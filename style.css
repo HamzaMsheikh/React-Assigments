@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: url('') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#container {
+    width: 60%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    color: #ff758c;
+    border-bottom: 2px solid #ff758c;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+#prsnolInfo, #qualification, #skils, #experience, #language {
+    text-align: left;
+    padding: 10px 20px;
+}
+
+h4 {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+li {
+    list-style: none;
+    background: #ff758c;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+}
+
+p {
+    color: #444;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    #container {
+        width: 90%;
+    }
+}
