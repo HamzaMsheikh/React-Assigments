@@ -10,3 +10,11 @@
     100% { opacity: 1; transform: translateY(0); }
   }
 }
+
+@layer base {
+  html {
+    font-family: "Gidole", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+}

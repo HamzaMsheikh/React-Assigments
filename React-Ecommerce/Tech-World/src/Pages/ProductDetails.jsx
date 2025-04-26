@@ -9,7 +9,7 @@ import { useAuth } from "../Context/AuthContext";
 export default function ProductDetails() {
   const { id } = useParams(); // Get product ID from URL
   const navigate = useNavigate();
-  const { addToCart } = useCart(); // Use Cart Context
+  const { addToCart, cartItems } = useCart(); // Use Cart Context
   const { user } = useAuth(); // Use Auth Context to check login status
   const [showPopup, setShowPopup] = useState(false); // State for popup message
 
@@ -18,6 +18,12 @@ export default function ProductDetails() {
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // For image carousel
+  const [quantity, setQuantity] = useState(() => {
+    // Check if product is already in cart and set initial quantity
+    const existingItem = cartItems.find((item) => item.id === id);
+    return existingItem ? existingItem.quantity : 1;
+  });
 
   // Fetch product details and similar products from Firestore on page load
   useEffect(() => {
@@ -68,12 +74,33 @@ export default function ProductDetails() {
       // If user is not logged in, redirect to login page
       navigate("/login");
     } else {
-      // If user is logged in, add to cart and show popup
-      addToCart(product);
+      // If user is logged in, add to cart with quantity and show popup
+      addToCart(product, quantity);
       setShowPopup(true);
       // Hide popup after 3 seconds
       setTimeout(() => setShowPopup(false), 3000);
     }
+  };
+
+  // Image carousel handlers
+  const nextImage = () => {
+    if (product && product.images) {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (product && product.images) {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
+      );
+    }
+  };
+
+  const selectImage = (index) => {
+    setCurrentImageIndex(index);
   };
 
   if (loading) {
@@ -102,38 +129,85 @@ export default function ProductDetails() {
       </h2>
 
       {/* Product Details */}
-      <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row gap-6 mb-8">
-        {/* Product Image */}
-        <div className="md:w-1/2">
+      <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row-reverse gap-6 mb-8">
+        {/* Product Image Carousel */}
+        <div className="md:w-1/2 relative">
           <img
-            src={product.image}
+            src={product.images[currentImageIndex]}
             alt={product.title}
-            className="w-full h-96 object-cover rounded-lg"
+            className="w-full h-96 object-contain rounded-lg"
           />
+          {/* Previous/Next Buttons */}
+          <button
+            onClick={prevImage}
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
+          >
+            ←
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
+          >
+            →
+          </button>
+          {/* Thumbnails */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {product.images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`${product.title} thumbnail ${index + 1}`}
+                className={`w-16 h-16 object-contain rounded-lg cursor-pointer border-2 ${
+                  currentImageIndex === index ? "border-green-500" : "border-gray-300"
+                }`}
+                onClick={() => selectImage(index)}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Product Information */}
-        <div className="md:w-1/2 space-y-4">
+        <div className="md:w-1/2 space-y-4 flex flex-col">
           <h3 className="text-2xl font-semibold text-gray-800">
             {product.title}
           </h3>
           <p className="text-3xl font-bold text-green-600">
-            ${product.price.toFixed(2)}
+            Rs:{product.price}
           </p>
-          <p className="text-gray-600">{product.description}</p>
-          <div className="flex space-x-4">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center border rounded-lg">
+              <button
+                onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
+                className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-l-lg"
+              >
+                -
+              </button>
+              <span className="px-4 py-1">{quantity}</span>
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-r-lg"
+              >
+                +
+              </button>
+            </div>
             <button
               onClick={handleAddToCart}
-              className="bg-green-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-green-600 transition-colors"
+              className="bg-green-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-green-500 transition-colors"
             >
               Add to Cart
             </button>
-            <button
-              onClick={() => navigate("/products")}
-              className="bg-gray-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600 transition-colors"
-            >
-              Back to Products
-            </button>
+          </div>
+          <button
+            onClick={() => navigate("/products")}
+            className="bg-gray-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600 transition-colors w-fit"
+          >
+            Back to Products
+          </button>
+          <div>
+            <h4 className="text-lg font-semibold text-gray-700 mb-2">
+              Description
+            </h4>
+            <p className="text-gray-600">{product.description}</p>
           </div>
         </div>
       </div>

@@ -221,9 +221,9 @@ export default function OrderDetails() {
                     />
                   </td>
                   <td className="p-3">{item.title}</td>
-                  <td className="p-3">${item.price.toFixed(2)}</td>
+                  <td className="p-3">Rs:{item.price}</td>
                   <td className="p-3">{item.quantity}</td>
-                  <td className="p-3">${(item.price * item.quantity).toFixed(2)}</td>
+                  <td className="p-3">Rs:{(item.price * item.quantity)}</td>
                 </tr>
               ))}
             </tbody>
@@ -233,7 +233,7 @@ export default function OrderDetails() {
         {/* Total Price */}
         <div className="mt-4 flex justify-end">
           <div className="text-lg font-semibold text-gray-700">
-            Total: ${order.totalPrice.toFixed(2)}
+            Total: Rs:{order.totalPrice}
           </div>
         </div>
       </div>

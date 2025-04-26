@@ -7,7 +7,9 @@ export default function DashboardContent() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+  const [images, setImages] = useState([""]); // State for multiple image URLs
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState(""); // State for category
   const [error, setError] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,6 +36,24 @@ export default function DashboardContent() {
     }
   };
 
+  // Handle adding a new image URL input
+  const handleAddImageField = () => {
+    setImages([...images, ""]);
+  };
+
+  // Handle removing an image URL input
+  const handleRemoveImageField = (index) => {
+    const newImages = images.filter((_, i) => i !== index);
+    setImages(newImages);
+  };
+
+  // Handle image URL change
+  const handleImageChange = (index, value) => {
+    const newImages = [...images];
+    newImages[index] = value;
+    setImages(newImages);
+  };
+
   // Handle product addition
   const handleAddProduct = async (e) => {
     e.preventDefault();
@@ -50,13 +70,22 @@ export default function DashboardContent() {
       return;
     }
 
+    // Validate that at least one image URL is provided in the images array
+    const validImages = images.filter((url) => url.trim() !== "");
+    if (validImages.length === 0) {
+      setError("At least one valid image URL is required.");
+      return;
+    }
+
     try {
       // Add product to Firestore
       await addDoc(collection(db, "products"), {
         title,
         price: Number(price),
         image,
+        images: validImages, // Save the array of image URLs
         description,
+        category, // Save the category
         createdAt: new Date().toISOString(),
       });
 
@@ -64,7 +93,9 @@ export default function DashboardContent() {
       setTitle("");
       setPrice("");
       setImage("");
+      setImages([""]); // Reset images array
       setDescription("");
+      setCategory(""); // Reset category
 
       // Refresh product list
       fetchProducts();
@@ -113,6 +144,18 @@ export default function DashboardContent() {
           </div>
           <div>
             <label className="block text-gray-700 font-semibold mb-1">
+              Category
+            </label>
+            <input
+              type="text"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Enter product category (e.g., Electronics)"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">
               Image URL
             </label>
             <input
@@ -123,6 +166,38 @@ export default function DashboardContent() {
               placeholder="Enter image URL"
               required
             />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">
+              Additional Image URLs (Optional)
+            </label>
+            {images.map((img, index) => (
+              <div key={index} className="flex items-center space-x-2 mb-2">
+                <input
+                  type="text"
+                  value={img}
+                  onChange={(e) => handleImageChange(index, e.target.value)}
+                  className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder={`Enter additional image URL ${index + 1}`}
+                />
+                {images.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveImageField(index)}
+                    className="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={handleAddImageField}
+              className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600 mt-2"
+            >
+              Add Image URL
+            </button>
           </div>
           <div>
             <label className="block text-gray-700 font-semibold mb-1">
@@ -178,7 +253,7 @@ export default function DashboardContent() {
                         {product.title}
                       </Link>
                     </td>
-                    <td className="p-3">${product.price.toFixed(2)}</td>
+                    <td className="p-3">RS:{product.price.toFixed(2)}</td>
                     <td className="p-3">
                       <img
                         src={product.image}
@@ -186,7 +261,9 @@ export default function DashboardContent() {
                         className="w-16 h-16 object-cover rounded"
                       />
                     </td>
-                    <td className="p-3">{product.description}</td>
+                    <td className="p-3 truncate max-w-xs" title={product.description}>
+                      {product.description}
+                    </td>
                   </tr>
                 ))}
               </tbody>

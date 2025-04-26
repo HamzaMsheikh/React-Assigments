@@ -30,9 +30,14 @@ export default function Navbar() {
   return (
     <nav className="bg-green-500 text-white shadow-lg">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <NavLink to="/" className="text-2xl font-bold">
-          Tech-World
+        {/* Logo with Text and Image */}
+        <NavLink to="/" className="flex items-center space-x-2">
+          <img
+            src="./src/assets/Tech-world-logo/Tech-World-Logo.png"
+            alt="Tech World Logo"
+            className="h-9 w-9"
+          />
+          <span className="text-2xl font-bold">Tech-World</span>
         </NavLink>
 
         {/* Mobile Menu Toggle */}
@@ -133,3 +138,4 @@ export default function Navbar() {
     </nav>
   );
 }
+

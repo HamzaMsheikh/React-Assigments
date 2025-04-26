@@ -133,7 +133,7 @@ export default function ProductManagement() {
               Price
             </label>
             <p className="p-3 bg-gray-100 rounded-lg">
-              ${product.price.toFixed(2)}
+              Rs:{product.price.toFixed(2)}
             </p>
           </div>
           <div>

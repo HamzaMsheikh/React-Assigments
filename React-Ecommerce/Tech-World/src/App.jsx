@@ -29,6 +29,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:category" element={<ProductList />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:id" element={<ProductDetails />} />
@@ -63,3 +64,4 @@ function App() {
 }
 
 export default App;
+

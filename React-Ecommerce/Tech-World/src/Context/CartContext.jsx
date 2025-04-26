@@ -31,6 +31,16 @@ export function CartProvider({ children }) {
     });
   };
 
+  // Update quantity of an item in cart
+  const updateQuantity = (id, newQuantity) => {
+    if (newQuantity < 1) return; // Prevent quantity from going below 1
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
   // Remove item from cart
   const removeFromCart = (id) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
@@ -48,7 +58,7 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart, getCartTotal }}
+      value={{ cartItems, addToCart, updateQuantity, removeFromCart, clearCart, getCartTotal }}
     >
       {children}
     </CartContext.Provider>
@@ -63,4 +73,3 @@ export function useCart() {
   }
   return context;
 }
-

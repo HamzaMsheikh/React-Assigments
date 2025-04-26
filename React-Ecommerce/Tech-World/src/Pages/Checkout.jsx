@@ -317,12 +317,12 @@ export default function Checkout() {
                       <div>
                         <p className="text-gray-700 font-semibold">{item.title}</p>
                         <p className="text-gray-500 text-sm">
-                          ${item.price.toFixed(2)} x {item.quantity}
+                          Rs:{item.price} x {item.quantity}
                         </p>
                       </div>
                     </div>
                     <p className="text-gray-700 font-semibold">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      Rs:{(item.price * item.quantity)}
                     </p>
                   </li>
                 ))}
@@ -330,7 +330,7 @@ export default function Checkout() {
               <div className="border-t border-gray-300 mt-4 pt-4">
                 <div className="flex justify-between items-center">
                   <p className="text-lg font-semibold text-gray-700">Total:</p>
-                  <p className="text-lg font-semibold text-gray-700">${totalPrice.toFixed(2)}</p>
+                  <p className="text-lg font-semibold text-gray-700">Rs:{totalPrice}</p>
                 </div>
               </div>
             </div>

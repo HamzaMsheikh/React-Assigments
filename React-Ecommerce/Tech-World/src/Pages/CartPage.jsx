@@ -4,7 +4,7 @@ import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
 
 export default function CartPage() {
-  const { cartItems, removeFromCart, clearCart, getCartTotal } = useCart();
+  const { cartItems, removeFromCart, clearCart, getCartTotal, updateQuantity } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -61,7 +61,23 @@ export default function CartPage() {
                     </td>
                     <td className="p-3">{item.title}</td>
                     <td className="p-3">${item.price.toFixed(2)}</td>
-                    <td className="p-3">{item.quantity}</td>
+                    <td className="p-3">
+                      <div className="flex items-center border rounded-lg w-fit">
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-l-lg"
+                        >
+                          -
+                        </button>
+                        <span className="px-4 py-1">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-r-lg"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </td>
                     <td className="p-3">${(item.price * item.quantity).toFixed(2)}</td>
                     <td className="p-3">
                       <button
@@ -86,7 +102,7 @@ export default function CartPage() {
               Clear Cart
             </button>
             <div className="text-lg font-semibold text-gray-700">
-              Total: ${getCartTotal().toFixed(2)}
+              Total: Rs:{getCartTotal()}
             </div>
           </div>
 

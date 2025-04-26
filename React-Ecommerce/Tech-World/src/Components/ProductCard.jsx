@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
 
         {/* Price */}
         <p className="text-xl font-bold text-green-600 mb-2">
-          ${product.price.toFixed(2)}
+          Rs:{product.price}
         </p>
 
         {/* Description (truncated) */}
@@ -33,3 +33,4 @@ export default function ProductCard({ product }) {
     </Link>
   );
 }
+
