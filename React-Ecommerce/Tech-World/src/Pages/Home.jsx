@@ -59,26 +59,26 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="pt-16 md:pt-0"> {/* Added padding-top for mobile navbar */}
       {/* Hero Section */}
       <Hero />
 
       {/* Product List Section */}
       <section id="products" className="container mx-auto px-4 py-8">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-          Welcome to Tech-World
+          Latest Products
         </h2>
 
         {/* Search and Sort Controls */}
-        <div className="flex flex-col sm:flex-row justify-between mb-6 gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
           {/* Search Bar */}
           <div className="w-full sm:w-1/2">
             <input
               type="text"
-              placeholder="Search products by title or description..."
+              placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
 
@@ -87,7 +87,7 @@ export default function Home() {
             <select
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               <option value="">Sort By</option>
               <option value="price-asc">Price: Low to High</option>
@@ -100,7 +100,7 @@ export default function Home() {
         {sortedProducts.length === 0 ? (
           <p className="text-center text-gray-500">No products found.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {sortedProducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -113,4 +113,3 @@ export default function Home() {
     </div>
   );
 }
-

@@ -28,7 +28,7 @@ export default function Navbar() {
     }`;
 
   return (
-    <nav className="bg-green-500 text-white shadow-lg">
+    <nav className="bg-green-500 text-white shadow-lg fixed top-0 left-0 w-full z-50"> {/* Increased z-index to z-50 */}
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo with Text and Image */}
         <NavLink to="/" className="flex items-center space-x-2">
@@ -66,7 +66,7 @@ export default function Navbar() {
         <div
           className={`${
             isOpen ? "block" : "hidden"
-          } md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-green-600 md:bg-transparent z-10`}
+          } md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-green-600 md:bg-transparent z-50`} 
         >
           <div className="flex flex-col md:flex-row md:space-x-6 p-4 md:p-0">
             <NavLink

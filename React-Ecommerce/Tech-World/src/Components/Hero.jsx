@@ -27,7 +27,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative bg-cover bg-center text-white py-20 h-[70vh] flex items-center"
+      className="relative bg-cover mt-10 bg-center text-white py-12 sm:py-16 md:py-20 h-[50vh] sm:h-[60vh] md:h-[70vh] flex items-center"
       style={{
         backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
         transition: "background-image 1s ease-in-out",
@@ -37,16 +37,16 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
       {/* Content */}
-      <div className="relative container mx-auto px-4 text-center z-10">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+      <div className="relative container mx-auto px-4 sm:px-6 md:px-8 text-center z-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-lg">
           Welcome to Your Tech-World
         </h1>
-        <p className="text-lg md:text-2xl mb-8 drop-shadow-md">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 drop-shadow-md">
           Discover Amazing Deals Every Day!
         </p>
         <Link
           to="/products"
-          className="inline-block bg-green-500 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-green-600 transition-colors"
+          className="inline-block bg-green-500 text-white font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg shadow-lg hover:bg-green-600 transition-colors text-sm sm:text-base"
         >
           Shop Now
         </Link>
