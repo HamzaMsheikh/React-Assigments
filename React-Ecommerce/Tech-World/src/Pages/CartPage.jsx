@@ -60,7 +60,7 @@ export default function CartPage() {
                       />
                     </td>
                     <td className="p-3">{item.title}</td>
-                    <td className="p-3">${item.price.toFixed(2)}</td>
+                    <td className="p-3">Rs:{item.price}</td>
                     <td className="p-3">
                       <div className="flex items-center border rounded-lg w-fit">
                         <button
@@ -78,7 +78,7 @@ export default function CartPage() {
                         </button>
                       </div>
                     </td>
-                    <td className="p-3">${(item.price * item.quantity).toFixed(2)}</td>
+                    <td className="p-3">Rs:{(item.price * item.quantity)}</td>
                     <td className="p-3">
                       <button
                         onClick={() => removeFromCart(item.id)}

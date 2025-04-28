@@ -317,7 +317,7 @@ export default function Products() {
                     </td>
                     <td className="p-2 sm:p-3 sm:table-cell hidden">
                       <span className="sm:hidden font-semibold">Price: </span>
-                      ${product.price.toFixed(2)}
+                      Rs:{product.price}
                     </td>
                     <td className="p-2 sm:p-3 md:table-cell hidden truncate max-w-[150px] md:max-w-[200px]">
                       <span className="md:hidden font-semibold">Description: </span>
