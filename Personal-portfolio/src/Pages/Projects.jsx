@@ -6,7 +6,7 @@ function Projects() {
         description:
           'A fully functional e-commerce website with user authentication, product filtering, and payment integration.',
         tech: ['React', 'Node.js', 'Tailwind', 'Firebase', 'React Router'],
-        image: './src/assets/Images/tech-world.png',
+        image: 'https://www.shutterstock.com/image-vector/online-shopping-digital-technology-icon-260nw-2217607781.jpg',
         github: 'https://github.com/HamzaMsheikh/React-Assigments/tree/main/React-Ecommerce/Tech-World',
         live: 'https://react-ecommerce-git-main-hamza-sheikhs-projects-bf301159.vercel.app/',
       },
@@ -15,7 +15,7 @@ function Projects() {
         description:
           'I developed a fun and interactive Flying Superman Game using HTML, CSS, and JavaScript. The game features smooth animations and responsive controls, providing an engaging user experience.',
         tech: ['HTML', 'CSS', 'Javascript'],
-        image: './src/assets/Images/flying-superman.png',
+        image: 'https://i.toynewsi.com/g/albums/Chillingo_Ltd/Superman/mzl.kpoitkjm.320x480-75.jpg',
         github: 'https://github.com/HamzaMsheikh/Javascript-Projects/tree/main/Flying-Superman-Game',
         live: 'https://flyingsuperman-1stgame-hamzasheikh.netlify.app/',
       },
@@ -24,7 +24,7 @@ function Projects() {
         description:
           'I created a simple and fully functional calculator using HTML, CSS, and JavaScript. It performs basic arithmetic operations with a clean and user-friendly interface.',
         tech: ['HTML', 'CSS', 'Javascript'],
-        image: './src/assets/Images/calculator.png',
+        image: 'https://lifehacker.com/imagery/articles/01J5QZ2SKPECB965ANKW19HNBQ/images-1.fill.size_2000x1000.v1724160341.jpg',
         github: 'https://github.com/HamzaMsheikh/Javascript-Projects/tree/main/Calculator',
         live: 'https://calculator-js-hamzasheikh.netlify.app/',
       },

@@ -12,7 +12,7 @@ function About() {
             {/* Profile Image */}
             <div className="w-48 h-48 md:w-64 md:h-64">
               <img
-                src="./src/assets/Images/hamza.jpg"
+                src="https://cdn.kwork.com/pics/t3/96/21618127-1657289696.jpg"
                 alt="Hamza Sheikh"
                 className="w-full h-full rounded-full object-cover"
               />

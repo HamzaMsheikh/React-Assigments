@@ -56,7 +56,7 @@ function Footer() {
               aria-label="GitHub"
             >
               <img
-                src="./src/assets/Images/github.webp"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMzEkaAN0BJ2o3ri2IsQRKXVk6ejQQqz0GUg&s"
                 alt="GitHub"
                 className="w-7 h-7 rounded-2xl hover:opacity-80 transition-opacity"
               />
@@ -69,7 +69,7 @@ function Footer() {
               aria-label="LinkedIn"
             >
               <img
-                src="./src/assets/Images/linkedin.webp"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png"
                 alt="LinkedIn"
                 className="w-7 h-7 rounded-2xl hover:opacity-80 transition-opacity"
               />
