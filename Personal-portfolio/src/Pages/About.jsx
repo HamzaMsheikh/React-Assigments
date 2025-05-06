@@ -12,7 +12,7 @@ function About() {
             {/* Profile Image */}
             <div className="w-48 h-48 md:w-64 md:h-64">
               <img
-                src="https://cdn.kwork.com/pics/t3/96/21618127-1657289696.jpg"
+                src="https://t3.ftcdn.net/jpg/06/44/10/28/360_F_644102888_xpJhbJ0c2l533J27jci9ETbiDFXsR1GI.jpg"
                 alt="Hamza Sheikh"
                 className="w-full h-full rounded-full object-cover"
               />
@@ -43,7 +43,7 @@ function About() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
               <div className="bg-purple-100 p-4 rounded-lg text-center hover:bg-purple-200 transition-colors">
                 <h3 className="text-lg font-medium text-gray-700">Experience</h3>
-                <p className="text-gray-600">[1 Year] Years in [Studying and Making Projects, Web Development]</p>
+                <p className="text-gray-600">[1] Year in [Studying and Making Projects, Web Development]</p>
               </div>
               <div className="bg-purple-100 p-4 rounded-lg text-center hover:bg-purple-200 transition-colors">
                 <h3 className="text-lg font-medium text-gray-700">Location</h3>
