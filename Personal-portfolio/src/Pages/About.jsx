@@ -12,7 +12,7 @@ function About() {
             {/* Profile Image */}
             <div className="w-48 h-48 md:w-64 md:h-64">
               <img
-                src="https://t3.ftcdn.net/jpg/06/44/10/28/360_F_644102888_xpJhbJ0c2l533J27jci9ETbiDFXsR1GI.jpg"
+                src="https://avatars.githubusercontent.com/u/156770468?v=4"
                 alt="Hamza Sheikh"
                 className="w-full h-full rounded-full object-cover"
               />
