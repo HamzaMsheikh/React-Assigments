@@ -138,7 +138,7 @@ function Contact() {
                   aria-label="Facebook"
                 >
                   <img
-                    src="./src/assets/Images/facebook.avif"
+                    src="https://cdn.iconscout.com/icon/free/png-256/free-facebook-logo-icon-download-in-svg-png-gif-file-formats--fb-new-color-social-media-logos-icons-1350125.png?f=webp"
                     alt="Facebook"
                     className="w-7 h-7 rounded-2xl"
                   />
