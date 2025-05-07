@@ -14,7 +14,7 @@ function Contact() {
         <div className="flex flex-col md:flex-row gap-8">
           {/* Contact Form */}
           <div className={`flex-1 ${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-6 rounded-lg shadow-md transition-colors`}>
-            <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
+            <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-black' : 'text-gray-700'} mb-4`}>
               Send a Message
             </h2>
             <form
@@ -122,7 +122,7 @@ function Contact() {
                   />
                 </a>
                 <a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://www.linkedin.com/in/hamza-sheikh-176454325/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${isDarkMode ? 'text-blue-400 hover:text-blue-600' : 'text-purple-600 hover:text-purple-800'}`}

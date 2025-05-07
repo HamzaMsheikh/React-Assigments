@@ -65,7 +65,7 @@ function Footer() {
               />
             </a>
             <a
-              href="https://linkedin.com/in/hamza-sheikh-7745"
+              href="https://www.linkedin.com/in/hamza-sheikh-176454325/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-yellow-300 transition-colors"

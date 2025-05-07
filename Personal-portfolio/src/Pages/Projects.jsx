@@ -63,7 +63,7 @@ function Projects() {
 
               {/* Project Details */}
               <div className="p-4">
-                <h2 className={`text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'} mb-2`}>
+                <h2 className={`text-xl font-semibold ${isDarkMode ? 'text-black' : 'text-gray-800'} mb-2`}>
                   {project.title}
                 </h2>
                 <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'} mb-4`}>{project.description}</p>

@@ -43,7 +43,7 @@ function Skills() {
                 className={`${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-4 rounded-lg shadow-md flex items-center justify-center space-x-2 transition-colors`}
               >
                 <span className="text-2xl">{skill.icon}</span>
-                <span className={`text-${isDarkMode ? 'gray-300' : 'gray-700'} font-medium`}>{skill.name}</span>
+                <span className={`text-${isDarkMode ? 'black' : 'gray-700'} font-medium`}>{skill.name}</span>
               </div>
             ))}
           </div>
@@ -61,7 +61,7 @@ function Skills() {
                 className={`${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-4 rounded-lg shadow-md flex items-center justify-center space-x-2 transition-colors`}
               >
                 <span className="text-2xl">{skill.icon}</span>
-                <span className={`text-${isDarkMode ? 'gray-300' : 'gray-700'} font-medium`}>{skill.name}</span>
+                <span className={`text-${isDarkMode ? 'black' : 'gray-700'} font-medium`}>{skill.name}</span>
               </div>
             ))}
           </div>

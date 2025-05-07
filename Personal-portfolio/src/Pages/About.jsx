@@ -46,19 +46,19 @@ function About() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             <div className={`${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-4 rounded-lg text-center transition-colors`}>
-              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Experience</h3>
+              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-black' : 'text-gray-700'}`}>Experience</h3>
               <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>[1] Year in [Studying and Making Projects, Web Development]</p>
             </div>
             <div className={`${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-4 rounded-lg text-center transition-colors`}>
-              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Location</h3>
+              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-black' : 'text-gray-700'}`}>Location</h3>
               <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>[Karachi, Pakistan]</p>
             </div>
             <div className={`${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-4 rounded-lg text-center transition-colors`}>
-              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Education</h3>
+              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-black' : 'text-gray-700'}`}>Education</h3>
               <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>[Graduate, Islamia Govt.College]</p>
             </div>
             <div className={`${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-4 rounded-lg text-center transition-colors`}>
-              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Hobbies</h3>
+              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-black' : 'text-gray-700'}`}>Hobbies</h3>
               <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>[Coding, Singing, Music, Reading, Playnig games.]</p>
             </div>
           </div>
