@@ -1,16 +1,20 @@
+import { useTheme } from '../ThemeContext'; // Adjust path as per your project structure
+
 function Contact() {
+  const { isDarkMode } = useTheme();
+
   return (
-    <section className="bg-purple-50 min-h-screen py-12">
+    <section className={`${isDarkMode ? 'bg-black' : 'bg-purple-50'} min-h-screen py-12`}>
       <div className="container mx-auto px-4">
         {/* Heading */}
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8">
+        <h1 className={`text-3xl md:text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'} text-center mb-8`}>
           Get in Touch
         </h1>
 
         <div className="flex flex-col md:flex-row gap-8">
           {/* Contact Form */}
-          <div className="flex-1 bg-purple-100 p-6 rounded-lg shadow-md hover:bg-purple-200 transition-colors">
-            <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+          <div className={`flex-1 ${isDarkMode ? 'bg-blue-200 hover:bg-blue-300' : 'bg-purple-100 hover:bg-purple-200'} p-6 rounded-lg shadow-md transition-colors`}>
+            <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
               Send a Message
             </h2>
             <form
@@ -21,7 +25,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-600"
+                  className={`block text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
                 >
                   Name
                 </label>
@@ -29,7 +33,7 @@ function Contact() {
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="Your Name"
                   required
                 />
@@ -37,7 +41,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-600"
+                  className={`block text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
                 >
                   Email
                 </label>
@@ -45,7 +49,7 @@ function Contact() {
                   type="email"
                   id="email"
                   name="email"
-                  className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="Your Email"
                   required
                 />
@@ -53,7 +57,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-600"
+                  className={`block text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
                 >
                   Message
                 </label>
@@ -61,14 +65,14 @@ function Contact() {
                   id="message"
                   name="message"
                   rows="5"
-                  className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="Your Message"
                   required
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full bg-purple-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-600 transition-colors"
+                className={`w-full ${isDarkMode ? 'bg-blue-500 hover:bg-blue-600' : 'bg-purple-500 hover:bg-purple-600'} text-white font-semibold py-2 px-4 rounded-md transition-colors`}
               >
                 Send Message
               </button>
@@ -77,22 +81,22 @@ function Contact() {
 
           {/* Contact Info & Social Links */}
           <div className="flex-1">
-            <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+            <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>
               Contact Information
             </h2>
             <div className="space-y-4">
-              <p className="text-gray-600">
+              <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>
                 <span className="font-medium">Email:</span>{' '}
                 hamzasheikh7745@gmail.com
               </p>
-              <p className="text-gray-600">
+              <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>
                 <span className="font-medium">Phone:</span>{' '}
                 03092075995
               </p>
-              <p className="text-gray-600">
+              <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>
                 <span className="font-medium">Location:</span> Karachi, Pakistan
               </p>
-              <p className="text-gray-600">
+              <p className={`text-${isDarkMode ? 'gray-400' : 'gray-600'}`}>
                 Feel free to reach out for collaborations, inquiries, or just to
                 say hi!
               </p>
@@ -100,7 +104,7 @@ function Contact() {
 
             {/* Social Media Links */}
             <div className="mt-6">
-              <h3 className="text-lg font-medium text-gray-700 mb-2">
+              <h3 className={`text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
                 Follow Me
               </h3>
               <div className="flex space-x-4">
@@ -108,7 +112,7 @@ function Contact() {
                   href="https://github.com/HamzaMsheikh?tab=overview&from=2025-05-01&to=2025-05-05"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-purple-600 hover:text-purple-800"
+                  className={`${isDarkMode ? 'text-blue-400 hover:text-blue-600' : 'text-purple-600 hover:text-purple-800'}`}
                   aria-label="GitHub"
                 >
                   <img
@@ -121,7 +125,7 @@ function Contact() {
                   href="https://linkedin.com/in/yourusername"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-purple-600 hover:text-purple-800"
+                  className={`${isDarkMode ? 'text-blue-400 hover:text-blue-600' : 'text-purple-600 hover:text-purple-800'}`}
                   aria-label="LinkedIn"
                 >
                   <img
@@ -134,7 +138,7 @@ function Contact() {
                   href="https://www.facebook.com/share/16ZcFkrVKq/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-purple-600 hover:text-purple-800"
+                  className={`${isDarkMode ? 'text-blue-400 hover:text-blue-600' : 'text-purple-600 hover:text-purple-800'}`}
                   aria-label="Facebook"
                 >
                   <img

@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { useTheme } from '../ThemeContext'; // Adjust path as per your project structure
 
 function Footer() {
+  const { isDarkMode } = useTheme();
+
   return (
-    <footer className="bg-gradient-to-r from-purple-500 to-purple-700 text-white py-6">
+    <footer className={`bg-gradient-to-r ${isDarkMode ? 'from-blue-900 to-blue-700' : 'from-purple-500 to-purple-700'} text-white py-6`}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Copyright Info */}
