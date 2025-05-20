@@ -6,8 +6,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['SET_USER'],
-        ignoredPaths: ['user'],
+        ignoredActions: ['SET_TODOS'], // Ignore SET_TODOS action
+        ignoredPaths: ['todos.createdAt'], // Ignore createdAt in todos state
       },
     }),
 });

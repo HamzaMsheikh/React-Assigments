@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTodo, deleteTodo } from '../Redux/actions';
 import { db } from '../Firebase/firebaseConfig';
 import { doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { motion } from 'framer-motion';
 
 const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,6 @@ const TodoItem = ({ todo }) => {
       });
       dispatch(toggleTodo(todo.id));
     } catch (error) {
-      console.error("Error toggling todo:", error);
       alert(error.message);
     }
   };
@@ -26,9 +26,7 @@ const TodoItem = ({ todo }) => {
     try {
       await deleteDoc(doc(db, 'todos', user.uid, 'userTodos', todo.id));
       dispatch(deleteTodo(todo.id));
-      console.log("Todo deleted:", todo.id);
     } catch (error) {
-      console.error("Error deleting todo:", error);
       alert(error.message);
     }
   };
@@ -41,37 +39,49 @@ const TodoItem = ({ todo }) => {
           text: editText
         });
         setIsEditing(false);
-        console.log("Todo updated:", { id: todo.id, text: editText });
       } catch (error) {
-        console.error("Error updating todo:", error);
         alert(error.message);
       }
     }
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3 } }
+  };
+
   return (
-    <li className="flex items-center justify-between p-2 border-b">
+    <motion.li
+      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg shadow-sm"
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {isEditing ? (
         <form onSubmit={handleUpdate} className="flex-1 flex gap-2">
           <input
             type="text"
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
-            className="flex-1 p-1 border rounded"
+            className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             autoFocus
           />
-          <button
+          <motion.button
             type="submit"
-            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+            className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Save
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={() => setIsEditing(false)}
-            className="bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-600"
+            className="bg-gray-500 text-white px-3 py-1 rounded-lg hover:bg-gray-600"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Cancel
-          </button>
+          </motion.button>
         </form>
       ) : (
         <div className="flex items-center flex-1">
@@ -79,26 +89,30 @@ const TodoItem = ({ todo }) => {
             type="checkbox"
             checked={todo.completed}
             onChange={handleToggle}
-            className="mr-2"
+            className="mr-3 h-5 w-5"
           />
-          <span className={todo.completed ? 'line-through text-gray-500' : ''}>
+          <span className={todo.completed ? 'line-through text-gray-500' : 'text-gray-800'}>
             {todo.text}
           </span>
-          <button
+          <motion.button
             onClick={() => setIsEditing(true)}
-            className="ml-4 bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
+            className="ml-4 bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Edit
-          </button>
+          </motion.button>
         </div>
       )}
-      <button
+      <motion.button
         onClick={handleDelete}
         className="text-red-500 hover:text-red-700 ml-2"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         Delete
-      </button>
-    </li>
+      </motion.button>
+    </motion.li>
   );
 };
 

@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { auth, db } from '../Firebase/firebaseConfig';
 import { setTodos } from '../Redux/actions';
 import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { motion } from 'framer-motion';
 import TodoItem from './TodoItem';
+import Footer from './Footer';
 
 const TodoApp = () => {
   const [todoText, setTodoText] = useState('');
@@ -24,7 +26,6 @@ const TodoApp = () => {
             createdAt: data.createdAt?.toDate() || new Date()
           };
         });
-        console.log("Fetched todos:", todosData); // Debug ke liye
         dispatch(setTodos(todosData));
       }, (error) => {
         console.error("Error fetching todos:", error);
@@ -53,51 +54,67 @@ const TodoApp = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      // Redux state already null ho jayega via onAuthStateChanged
     } catch (error) {
       alert(error.message);
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">My Todos</h2>
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-          >
-            Logout
-          </button>
-        </div>
-        <form onSubmit={handleAddTodo} className="mb-6">
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={todoText}
-              onChange={(e) => setTodoText(e.target.value)}
-              placeholder="Add a new todo"
-              className="flex-1 p-2 border rounded"
-            />
-            <button
-              type="submit"
-              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
+      <motion.div
+        className="flex-1 p-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-3xl font-bold text-gray-800">My Todos</h2>
+            <motion.button
+              onClick={handleLogout}
+              className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Add
-            </button>
+              Logout
+            </motion.button>
           </div>
-        </form>
-        <ul>
-          {todos.length === 0 ? (
-            <p className="text-gray-500">No todos yet!</p>
-          ) : (
-            todos.map(todo => (
-              <TodoItem key={todo.id} todo={todo} />
-            ))
-          )}
-        </ul>
-      </div>
+          <form onSubmit={handleAddTodo} className="mb-6">
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={todoText}
+                onChange={(e) => setTodoText(e.target.value)}
+                placeholder="Add a new todo"
+                className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <motion.button
+                type="submit"
+                className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Add
+              </motion.button>
+            </div>
+          </form>
+          <ul className="space-y-3">
+            {todos.length === 0 ? (
+              <p className="text-gray-500 text-center">No todos yet!</p>
+            ) : (
+              todos.map(todo => (
+                <TodoItem key={todo.id} todo={todo} />
+              ))
+            )}
+          </ul>
+        </div>
+      </motion.div>
+      <Footer />
     </div>
   );
 };
