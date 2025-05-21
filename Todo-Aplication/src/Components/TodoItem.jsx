@@ -5,11 +5,12 @@ import { db } from '../Firebase/firebaseConfig';
 import { doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, onShare, sharedWithEmail, setSharedWithEmail }) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(todo.text);
+  const [showShareInput, setShowShareInput] = useState(false);
 
   const handleToggle = async () => {
     try {
@@ -50,9 +51,15 @@ const TodoItem = ({ todo }) => {
     visible: { opacity: 1, x: 0, transition: { duration: 0.3 } }
   };
 
+  const priorityColor = {
+    Low: 'border-green-400',
+    Medium: 'border-yellow-400',
+    High: 'border-red-400',
+  };
+
   return (
     <motion.li
-      className="flex flex-col md:flex-row items-center justify-between p-2 md:p-3 bg-gray-50 rounded-lg shadow-sm"
+      className={`flex flex-col md:flex-row items-center justify-between p-2 md:p-3 bg-gray-50 rounded-lg shadow-sm border-l-4 ${priorityColor[todo.priority]}`}
       variants={itemVariants}
       initial="hidden"
       animate="visible"
@@ -92,11 +99,33 @@ const TodoItem = ({ todo }) => {
               onChange={handleToggle}
               className="mr-2 md:mr-3 h-4 w-4 md:h-5 md:w-5"
             />
-            <span className={todo.completed ? 'line-through text-gray-500' : 'text-gray-800 text-sm md:text-base'}>
-              {todo.text}
-            </span>
+            <div className="flex-1">
+              <span className={todo.completed ? 'line-through text-gray-500' : 'text-gray-800 text-sm md:text-base'}>
+                {todo.text}
+              </span>
+              <div className="text-xs text-gray-500 mt-1">
+                <span>Category: {todo.category}</span>
+                {todo.tags.length > 0 && (
+                  <span className="ml-2">
+                    Tags: {todo.tags.join(', ')}
+                  </span>
+                )}
+                <span className="ml-2">Priority: {todo.priority}</span>
+                {todo.dueDate && (
+                  <span className="ml-2">
+                    Due: {new Date(todo.dueDate).toLocaleString()}
+                  </span>
+                )}
+                {todo.recurrence !== 'None' && (
+                  <span className="ml-2">Recurs: {todo.recurrence}</span>
+                )}
+                {todo.sharedWith.length > 0 && (
+                  <span className="ml-2">Shared with: {todo.sharedWith.join(', ')}</span>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="flex gap-2 ml-0 md:ml-4">
+          <div className="flex gap-2 ml-0 md:ml-4 flex-wrap">
             <motion.button
               onClick={() => setIsEditing(true)}
               className="bg-yellow-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-lg hover:bg-yellow-600 text-sm md:text-base"
@@ -104,6 +133,14 @@ const TodoItem = ({ todo }) => {
               whileTap={{ scale: 0.95 }}
             >
               Edit
+            </motion.button>
+            <motion.button
+              onClick={() => setShowShareInput(!showShareInput)}
+              className="bg-purple-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-lg hover:bg-purple-600 text-sm md:text-base"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Share
             </motion.button>
             <motion.button
               onClick={handleDelete}
@@ -114,6 +151,25 @@ const TodoItem = ({ todo }) => {
               Delete
             </motion.button>
           </div>
+        </div>
+      )}
+      {showShareInput && (
+        <div className="w-full mt-2 flex gap-2">
+          <input
+            type="email"
+            value={sharedWithEmail}
+            onChange={(e) => setSharedWithEmail(e.target.value)}
+            placeholder="Enter email to share with"
+            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+          />
+          <motion.button
+            onClick={onShare}
+            className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600 text-sm md:text-base"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Share
+          </motion.button>
         </div>
       )}
     </motion.li>
