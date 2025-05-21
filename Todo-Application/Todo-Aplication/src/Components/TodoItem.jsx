@@ -52,23 +52,23 @@ const TodoItem = ({ todo }) => {
 
   return (
     <motion.li
-      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg shadow-sm"
+      className="flex flex-col md:flex-row items-center justify-between p-2 md:p-3 bg-gray-50 rounded-lg shadow-sm"
       variants={itemVariants}
       initial="hidden"
       animate="visible"
     >
       {isEditing ? (
-        <form onSubmit={handleUpdate} className="flex-1 flex gap-2">
+        <form onSubmit={handleUpdate} className="w-full flex flex-col md:flex-row gap-2 mb-2 md:mb-0">
           <input
             type="text"
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
-            className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full md:flex-1 p-2 md:p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
             autoFocus
           />
           <motion.button
             type="submit"
-            className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600"
+            className="w-full md:w-auto bg-blue-500 text-white px-3 py-1 md:px-3 md:py-1 rounded-lg hover:bg-blue-600 text-sm md:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -76,7 +76,7 @@ const TodoItem = ({ todo }) => {
           </motion.button>
           <motion.button
             onClick={() => setIsEditing(false)}
-            className="bg-gray-500 text-white px-3 py-1 rounded-lg hover:bg-gray-600"
+            className="w-full md:w-auto bg-gray-500 text-white px-3 py-1 md:px-3 md:py-1 rounded-lg hover:bg-gray-600 text-sm md:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -84,34 +84,38 @@ const TodoItem = ({ todo }) => {
           </motion.button>
         </form>
       ) : (
-        <div className="flex items-center flex-1">
-          <input
-            type="checkbox"
-            checked={todo.completed}
-            onChange={handleToggle}
-            className="mr-3 h-5 w-5"
-          />
-          <span className={todo.completed ? 'line-through text-gray-500' : 'text-gray-800'}>
-            {todo.text}
-          </span>
-          <motion.button
-            onClick={() => setIsEditing(true)}
-            className="ml-4 bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Edit
-          </motion.button>
+        <div className="w-full flex items-center flex-col md:flex-row">
+          <div className="flex items-center w-full md:w-auto mb-2 md:mb-0">
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={handleToggle}
+              className="mr-2 md:mr-3 h-4 w-4 md:h-5 md:w-5"
+            />
+            <span className={todo.completed ? 'line-through text-gray-500' : 'text-gray-800 text-sm md:text-base'}>
+              {todo.text}
+            </span>
+          </div>
+          <div className="flex gap-2 ml-0 md:ml-4">
+            <motion.button
+              onClick={() => setIsEditing(true)}
+              className="bg-yellow-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-lg hover:bg-yellow-600 text-sm md:text-base"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Edit
+            </motion.button>
+            <motion.button
+              onClick={handleDelete}
+              className="text-red-500 hover:text-red-700 px-2 py-1 md:px-3 md:py-1 text-sm md:text-base"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Delete
+            </motion.button>
+          </div>
         </div>
       )}
-      <motion.button
-        onClick={handleDelete}
-        className="text-red-500 hover:text-red-700 ml-2"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Delete
-      </motion.button>
     </motion.li>
   );
 };
