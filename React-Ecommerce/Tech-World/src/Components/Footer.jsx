@@ -109,6 +109,44 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
           <p>© {new Date().getFullYear()} Tech-World. All rights reserved.</p>
+          <div className="flex justify-center space-x-4 mt-4">
+            <a
+              href="https://www.facebook.com/share/16ZcFkrVKq/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/018/930/698/non_2x/facebook-logo-facebook-icon-transparent-free-png.png"
+                alt="Facebook"
+                className="w-6 h-6"
+              />
+            </a>
+            <a
+              href="https://github.com/HamzaMsheikh?tab=overview&from=2025-05-01&to=2025-05-20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <img
+                src="https://img.icons8.com/ios_filled/512/github.png"
+                alt="GitHub"
+                className="w-6 h-6"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/hamza-sheikh-176454325/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/023/986/970/non_2x/linkedin-logo-linkedin-logo-transparent-linkedin-icon-transparent-free-free-png.png"
+                alt="LinkedIn"
+                className="w-6 h-6"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
